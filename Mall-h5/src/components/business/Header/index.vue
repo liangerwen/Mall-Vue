@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full h-header leading-header">
+  <header class="flex w-full h-header leading-header">
     <slot name="left">
       <div
         v-if="back"
@@ -21,8 +21,9 @@
         v-if="showMenu"
         v-model:show="showPopover"
         theme="dark"
-        :actions="actions"
+        :actions="spareActions"
         placement="bottom-end"
+        @select="handleSelect"
       >
         <template #reference>
           <div class="h-full px-2 flex justify-center items-center"
@@ -30,12 +31,14 @@
         ></template>
       </van-popover>
     </slot>
-  </div>
+  </header>
 </template>
 
 <script lang="ts">
   import { useRouter } from 'vue-router'
   import { ref } from 'vue'
+  import { IAction, actions } from './config'
+
   export default {
     name: 'MallHeader',
     props: {
@@ -62,18 +65,19 @@
         router.go(-1)
       }
       const showPopover = ref(false)
-      const actions = [
-        { text: '首页', icon: 'wap-home-o' },
-        { text: '分类搜索', icon: 'search' },
-        { text: '购物车', icon: 'shopping-cart-o' },
-        { text: '我的', icon: 'contact' },
-        { text: '浏览记录', icon: 'clock-o' },
-        { text: '消息', icon: 'comment-o' }
-      ]
+      const spareActions = actions.filter(
+        (i) =>
+          i.url.replace(/\//g, '') !==
+          router.currentRoute.value.path.replace(/\//g, '')
+      )
+      const handleSelect = (action: IAction) => {
+        router.push(action.url)
+      }
       return {
         goBack,
         showPopover,
-        actions
+        spareActions,
+        handleSelect
       }
     }
   }

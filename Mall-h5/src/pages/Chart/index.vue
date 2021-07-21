@@ -1,12 +1,45 @@
 <template>
-  <div class="mall-chart mall-bg relative">
-    <mall-header back title="购物车" showMenu class="bg-white"> </mall-header>
+  <div class="mall-container mall-bg">
+    <van-sticky>
+      <mall-header back title="购物车" showMenu class="bg-white"> </mall-header>
+    </van-sticky>
+    <div
+      :class="{
+        'h-header flex bg-white px-2': true,
+        'justify-end': chart.chartEditable
+      }"
+      ><div v-if="chart.chartEditable">
+        <div
+          class="text-sm w-12 leading-header text-center"
+          @click="chart.chartEditable = false"
+          >完成</div
+        >
+      </div>
+      <template v-else
+        ><p
+          class="text-sm leading-header px-4 van-ellipsis"
+          @click="chart.showAddressList = true"
+          ><van-icon
+            name="location-o"
+            class="mr-1"
+          />昆山市昆山市昆山市昆山市昆山市昆山市昆山市昆山市昆山市昆山市昆山市昆山市昆山市昆山市昆山市昆山市昆山市</p
+        >
+        <i class="block w-1 transform scale-y-25 bg-gray-300 mr-2"></i>
+        <div>
+          <div
+            class="text-sm w-12 leading-header text-center"
+            @click="chart.chartEditable = true"
+            >管理</div
+          >
+        </div>
+      </template>
+    </div>
     <mall-pull-refresh
       v-model="refresh.loading"
       @refresh="refresh.handle"
-      class="flex-auto overflow-y-auto mb-14"
+      class="flex-auto mb-2header"
     >
-      <div class="flex-auto w-full">
+      <div class="flex-auto w-full" id="mall-chart-scroll">
         <div
           class="flex justify-center items-center chart-list"
           v-if="chart.list.length === 0"
@@ -16,7 +49,7 @@
             <p>购物车空空如也，去逛逛吧~</p>
           </div>
         </div>
-        <div class="flexchart-list" v-else>
+        <div class="flex flex-col chart-list" v-else>
           <div
             class="flex flex-col m-2 bg-white rounded-lg"
             v-for="(chart, i) in chart.list"
@@ -112,10 +145,14 @@
         </div>
       </div>
     </mall-pull-refresh>
+    <van-popup v-model:show="chart.showAddressList" position="bottom" round>
+      <mall-address-list></mall-address-list>
+    </van-popup>
     <div
       class="
         absolute
-        bottom-0
+        h-footer
+        bottom-footer
         left-0
         h-14
         w-full
@@ -123,30 +160,28 @@
         opacity-95
         flex
         items-center
+        z-10
       "
+      v-if="chart.list.length > 0"
     >
-      <van-submit-bar
-        class="relative"
+      <mall-footer-bar
+        :type="chart.chartEditable ? IType.EDIT : IType.BALANCE"
+        :button-text="`去结算(${chart.count})件`"
         :price="chart.price"
-        :button-text="`去结算(${chart.count}件)`"
-        :disabled="chart.count === 0"
-        @submit="onSubmit"
-      >
-        <van-checkbox v-model="chart.checkAll" checked-color="#e4393c"
-          >全选</van-checkbox
-        ></van-submit-bar
-      >
+        v-model="chart.checkAll"
+      ></mall-footer-bar>
     </div>
+    <mall-back-top right="30" bottom="130" target=".mall-chart"></mall-back-top>
+    <mall-footer class="absolute left-0 bottom-0 right-0" />
   </div>
-  <mall-footer class="absolute left-0 bottom-0 right-0" />
 </template>
 
 <script lang="ts">
-  /* eslint-disable */
   import { reactive } from 'vue'
   import { GoodType } from '../../components/business/Goods/type'
   import { useStore } from 'vuex'
   import { IState } from '@/store'
+  import { IType } from '@/components/business/FooterBar/index.vue'
   export default {
     setup() {
       const store = useStore<IState>()
@@ -175,6 +210,8 @@
       })
 
       const chart = reactive({
+        chartEditable: false,
+        showAddressList: false,
         list: [
           {
             shopName: '超仔代购',
@@ -286,19 +323,13 @@
         count: 0
       })
 
-      return { refresh, list, GoodType, chart }
+      return { refresh, list, GoodType, chart, IType }
     }
   }
 </script>
 
 <style lang="scss">
-  .mall-chart {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    .chart-list {
-      min-height: 260px;
-    }
+  .chart-list {
+    min-height: 260px;
   }
 </style>

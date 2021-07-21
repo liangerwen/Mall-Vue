@@ -1,12 +1,11 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import babel from 'vite-babel-plugin'
-import eslintPlugin from 'vite-plugin-eslint'
 import { resolve } from 'path'
 
 export default defineConfig({
   base: './',
-  plugins: [eslintPlugin(), babel(), vue()],
+  plugins: [babel(), vue()],
   build: {
     minify: 'esbuild'
   },
@@ -24,6 +23,9 @@ export default defineConfig({
   },
   server: {
     port: 8888,
-    open: true
+    open: true,
+    hmr: {
+      overlay: false
+    }
   }
 })

@@ -99,7 +99,6 @@
 </template>
 
 <script lang="ts">
-  /* eslint-disable */
   import { computed, PropType } from 'vue'
   import { GoodType } from './type'
   export default {

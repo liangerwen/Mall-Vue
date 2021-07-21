@@ -27,12 +27,7 @@
           clearable
         >
           <template #extra>
-            <div
-              class="
-                border border-gray-300 border-t-0 border-b-0 border-r-0
-                pl-3
-                text-gray-500
-              "
+            <div class="border-l border-gray-300 pl-3 text-gray-500"
               >获取验证码</div
             >
           </template>

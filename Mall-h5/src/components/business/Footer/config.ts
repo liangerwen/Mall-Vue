@@ -10,9 +10,9 @@ export const MenuOptions = [
     url: '/category'
   },
   {
-    title: '发现',
-    icon: 'aim',
-    url: '/find'
+    title: '消息',
+    icon: 'chat-o',
+    url: '/message'
   },
   {
     title: '购物车',

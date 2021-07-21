@@ -20,9 +20,9 @@ export default createRouter({
       component: () => import('@/pages/Category/index.vue')
     },
     {
-      path: '/find',
-      name: 'Find',
-      component: () => import('@/pages/Find/index.vue')
+      path: '/message',
+      name: 'Message',
+      component: () => import('@/pages/Message/index.vue')
     },
     {
       path: '/chart',

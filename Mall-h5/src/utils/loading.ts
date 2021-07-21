@@ -1,8 +1,9 @@
 import { createApp, createVNode } from 'vue'
 import MallLoading from '@/components/base/Loading/index.vue'
 import { Loading } from 'vant'
+import { ComponentInstance } from 'vant/lib/utils'
 
-let instance
+let instance: null | ComponentInstance
 
 export function $loading() {
   if (instance) return

@@ -1,9 +1,9 @@
 <template>
-  <div class="mall-category">
+  <div class="mall-container overflow-hidden flex flex-col">
     <mall-header back>
       <mall-search v-model="search.content" @search="search.handle" />
     </mall-header>
-    <div class="flex-auto flex border-t overflow-y-auto">
+    <div class="flex-auto flex border-t overflow-y-auto mb-footer">
       <van-sidebar
         v-model="active"
         class="category-sidebar h-full w-1/4 overflow-hidden"
@@ -46,8 +46,8 @@
         </div>
       </div>
     </div>
+    <mall-footer class="absolute left-0 bottom-0 right-0" />
   </div>
-  <mall-footer class="absolute left-0 bottom-0 right-0" />
 </template>
 
 <script lang="ts">
@@ -111,14 +111,7 @@
 </script>
 
 <style lang="scss">
-  .mall-category {
-    width: 100%;
-    height: calc(100% - 50px);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    .category-sidebar {
-      background-color: var(--van-sidebar-background-color);
-    }
+  .category-sidebar {
+    background-color: var(--van-sidebar-background-color);
   }
 </style>

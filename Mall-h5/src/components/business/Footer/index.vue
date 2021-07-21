@@ -1,7 +1,7 @@
 <template>
   <van-tabbar
     v-model="active"
-    class="border-t shadow-foot"
+    class="border-t shadow-footer h-footer"
     active-color="#fa2c19"
     route
     :fixed="false"

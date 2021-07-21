@@ -2,7 +2,7 @@
   <!-- 全屏loading -->
   <!-- <mall-loading :show="isLoading" /> -->
   <!-- 首页 -->
-  <div class="mall-home mall-bg">
+  <div class="mall-container mall-bg">
     <div class="mall-home_nav">
       <van-sticky @change="search.setBgColor"
         ><mall-search
@@ -72,7 +72,7 @@
     </div>
 
     <mall-goods
-      class="mt-2 mb-14"
+      class="mt-2 mb-header"
       v-model:loading="list.loading"
       @load="list.load"
       :finished="list.finished"
@@ -80,12 +80,12 @@
       :type="GoodType.CARD"
       finished-text="到底了~~"
     ></mall-goods>
+    <mall-back-top right="30" bottom="80" target=".mall-home"></mall-back-top>
+    <mall-footer class="absolute left-0 bottom-0 right-0" />
   </div>
-  <mall-footer class="absolute left-0 bottom-0 right-0" />
 </template>
 
 <script lang="ts">
-  /* eslint-disable */
   import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'
   import { useStore } from 'vuex'
   import { navList } from './config'
@@ -174,28 +174,23 @@
 </script>
 
 <style lang="scss">
-  .mall-home {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    .mall-home_nav {
-      background: url(@/assets/img/nav_bg.jpg) no-repeat;
-      background-size: 100% auto;
-    }
-    .seckill-time {
-      width: 1rem;
-      color: #fff;
-      background-image: -webkit-linear-gradient(230deg, #ff6152, #fa2c19);
-      background-image: linear-gradient(-140deg, #ff6152, #fa2c19);
-      background-color: #fa2c19;
-      border-radius: 0.2rem;
-      text-align: center;
-      font-weight: 400;
-      font-size: 0.5rem;
-      margin: 0 0.1rem;
-    }
-    .seckill-colon {
-      color: #fa2c19;
-    }
+  .mall-home_nav {
+    background: url(@/assets/img/nav_bg.jpg) no-repeat;
+    background-size: 100% auto;
+  }
+  .seckill-time {
+    width: 1rem;
+    color: #fff;
+    background-image: -webkit-linear-gradient(230deg, #ff6152, #fa2c19);
+    background-image: linear-gradient(-140deg, #ff6152, #fa2c19);
+    background-color: #fa2c19;
+    border-radius: 0.2rem;
+    text-align: center;
+    font-weight: 400;
+    font-size: 0.5rem;
+    margin: 0 0.1rem;
+  }
+  .seckill-colon {
+    color: #fa2c19;
   }
 </style>

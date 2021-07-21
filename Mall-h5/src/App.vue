@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="mall-container">
     <router-view />
   </div>
 </template>
@@ -10,9 +10,4 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  .container {
-    height: 100%;
-    width: 100%;
-  }
-</style>
+<style lang="scss" scoped></style>

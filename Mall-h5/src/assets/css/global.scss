@@ -13,6 +13,10 @@
   --van-orange: #ff983b;
   //自定义变量
   --mall-background-color: #f6f6f6;
+  --mall-header-height: 46px;
+  --mall-footer-height: 50px;
+  --mall-2footer-height: 100px;
+  --mall-gradient-red: linear-gradient(to right, #ff6034, #ee0a24);
 }
 
 //vant轮播图active时的样式
@@ -30,4 +34,9 @@
 
 .mall-bg {
   background-color: var(--mall-background-color);
+}
+.mall-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden auto;
 }

@@ -47,13 +47,14 @@ yarn build:prod
 - [x] [首页 HOME PAGE]
 - [x] [购物车页面 SHOPPING CART PAGE]
 - [x] [分类页面 SHOPPING CATEGORY PAGE]
+- [x] [登陆 LOGIN PAGE]
+- [x] [注册 SIGNUP PAGE]
+- [x] [商品搜索页面 PRODUCT LIST PAGE]
+
 
 
 ## 未完成
 
-- [x] [登陆 LOGIN PAGE]
-- [x] [注册 SIGNUP PAGE]
-- [x] [商品搜索页面 PRODUCT LIST PAGE]
 - [x] [商品详情页面 PRODUCT DETAIL PAGE]
 - [x] [确认订单页面 ORDER PAGE]
 - [x] [支付页面 PAY PAGE]
